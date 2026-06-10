@@ -20,7 +20,7 @@ const stagger = {
 const Hero = ({ introGlitch }) => (
   <section
     id="top"
-    className="relative w-full min-h-screen flex flex-col justify-center items-center pt-20 overflow-hidden"
+    className="relative w-full h-screen flex flex-col justify-center items-center pt-20 pb-0 overflow-hidden"
   >
     {/* Background */}
     <MatrixRain />
@@ -52,7 +52,7 @@ const Hero = ({ introGlitch }) => (
 
         <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
-            href="#projects"
+            href="#about"
             className="group inline-flex items-center gap-3 px-8 py-3.5 bg-[#22c55e]/90 text-black rounded-xl font-semibold hover:bg-[#22c55e] transition-all duration-300 shadow-[0_0_24px_-4px_rgba(34,197,94,0.5)] hover:shadow-[0_0_32px_-2px_rgba(34,197,94,0.7)] hover:-translate-y-0.5"
           >
             View My Work <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -72,7 +72,7 @@ const Hero = ({ introGlitch }) => (
     {/* Scroll hint */}
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2"
     >
       <span className="text-gray-500 text-xs font-mono tracking-widest">v Scroll Down v</span>
     </motion.div>

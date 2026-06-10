@@ -1,44 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Poppins', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'Fira Code', monospace;
 }
 
+/* ── Base ── */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #000000;
-  color: #f8fafc;
+  background-color: #050505;
+  color: #e2e8f0;
   overflow-x: hidden;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #000;
-}
-::-webkit-scrollbar-thumb {
-  background: #10b981;
-  border-radius: 6px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #22c55e;
+/* ── Anchor scroll offset for fixed Navbar ── */
+#top,
+#projects,
+#about,
+#skills,
+#contact {
+  scroll-margin-top: 90px;
 }
 
-/* Text selection */
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #22c55e, #16a34a);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+
+/* ── Text selection ── */
 ::selection {
-  background: rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.25);
   color: #fff;
 }
 
+/* ── GlitchText (Hero title) ── */
 @keyframes scanline {
   0%   { top: -10%; }
   100% { top: 110%; }
@@ -48,33 +54,71 @@ body {
   position: relative;
   display: inline-block;
   transform-style: preserve-3d;
-  letter-spacing: 0.02em;
 }
-
 .hero-block-3d::before,
 .hero-block-3d::after {
   content: attr(data-text);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   white-space: nowrap;
   pointer-events: none;
 }
-
 .hero-block-3d::before {
   color: rgba(34, 197, 94, 0.35);
-  transform: translate3d(8px, 8px, -28px) skewX(-12deg) skewY(4deg);
+  transform: translate3d(6px, 6px, -28px) skewX(-10deg) skewY(3deg);
   filter: brightness(0.65);
-  text-shadow: 0 0 1px rgba(0,0,0,0.25);
 }
-
 .hero-block-3d::after {
-  color: rgba(0, 0, 0, 0.75);
-  transform: translate3d(16px, 16px, -48px) skewX(-12deg) skewY(4deg);
-  filter: brightness(0.5);
+  color: rgba(0, 0, 0, 0.7);
+  transform: translate3d(14px, 14px, -48px) skewX(-10deg) skewY(3deg);
+  filter: brightness(0.45);
 }
 
 .perspective-1000 {
-  perspective: 1000px;
+  perspective: 1200px;
 }
 
+/* ── Floating animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── Glow pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(34,197,94,0.3); }
+  50%       { box-shadow: 0 0 40px rgba(34,197,94,0.6); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── Gradient border trick ── */
+.gradient-border {
+  position: relative;
+  background: transparent;
+  border-radius: 1rem;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #22c55e 0%, transparent 50%, #22c55e 100%);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* ── Noise texture overlay (subtle) ── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
