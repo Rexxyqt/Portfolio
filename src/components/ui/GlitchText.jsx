@@ -86,7 +86,7 @@ const GlitchText = ({ children, className = '', intense = false }) => (
     <style>{glitchStyles}</style>
     <span
       className={`${intense ? 'glitch-intro' : 'glitch-wrap'} ${className}`}
-      data-text={typeof children === 'string' ? children : undefined}
+      data-text={typeof children === 'string' ? children : 'default'}
     >
       {children}
     </span>

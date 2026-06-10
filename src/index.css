@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Poppins', system-ui, sans-serif;
   --font-mono: 'Fira Code', monospace;
 }
 
@@ -42,6 +42,36 @@ body {
 @keyframes scanline {
   0%   { top: -10%; }
   100% { top: 110%; }
+}
+
+.hero-block-3d {
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  letter-spacing: 0.02em;
+}
+
+.hero-block-3d::before,
+.hero-block-3d::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-block-3d::before {
+  color: rgba(34, 197, 94, 0.35);
+  transform: translate3d(8px, 8px, -28px) skewX(-12deg) skewY(4deg);
+  filter: brightness(0.65);
+  text-shadow: 0 0 1px rgba(0,0,0,0.25);
+}
+
+.hero-block-3d::after {
+  color: rgba(0, 0, 0, 0.75);
+  transform: translate3d(16px, 16px, -48px) skewX(-12deg) skewY(4deg);
+  filter: brightness(0.5);
 }
 
 .perspective-1000 {

@@ -36,14 +36,14 @@ const Hero = ({ introGlitch }) => (
 
         <motion.h1
           variants={fadeUp}
-          style={{ wordSpacing: '-0.25em' }}
-          className="font-['VT323'] text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[10rem] leading-none tracking-wide whitespace-nowrap uppercase text-white mb-2 drop-shadow-[0_4px_32px_rgba(34,197,94,0.2)]"
+          style={{ wordSpacing: '0.15em' }}
+          className="font-sans font-extrabold text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[8rem] leading-none tracking-normal whitespace-nowrap uppercase text-white mb-2 drop-shadow-[0_4px_32px_rgba(34,197,94,0.2)]"
         >
           <GlitchText intense={introGlitch}>Rex Latayada</GlitchText>
         </motion.h1>
 
-        <motion.p variants={fadeUp} className="font-mono text-base sm:text-xl md:text-2xl text-[#22c55e] tracking-[0.5em] uppercase mb-10">
-          System Developer
+        <motion.p variants={fadeUp} className="w-full max-w-2xl mx-auto mb-10">
+          <img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=24&pause=1200&color=22c55e&center=true&vCenter=true&width=800&lines=IoT+Developer;Mobile+App+Builder;System+Designer;BSIT+Student+%7C+TUP+Manila;" alt="Animated Roles" className="mx-auto" />
         </motion.p>
 
         <motion.p variants={fadeUp} className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto mb-10 opacity-80">
