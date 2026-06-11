@@ -1,17 +1,20 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import AnimatedSection from '../ui/AnimatedSection';
+import CardTilt from '../ui/CardTilt';
+import Magnetic from '../ui/Magnetic';
+import TextReveal from '../ui/TextReveal';
 import pfp from '/src/assets/image/pfp.png';
 
 /* ─── Clip-path curtain reveal ─── */
 const CurtainReveal = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px 0px' });
+  const inView = useInView(ref, { once: false, margin: '-80px 0px' });
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
       <motion.div
         initial={{ y: '102%' }}
-        animate={inView ? { y: 0 } : {}}
+        animate={inView ? { y: 0 } : { y: '102%' }}
         transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
@@ -23,12 +26,12 @@ const CurtainReveal = ({ children, delay = 0, className = '' }) => {
 /* ─── Fade transition for sections ─── */
 const RevealLine = ({ text, delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px 0px' });
+  const inView = useInView(ref, { once: false, margin: '-60px 0px' });
   return (
     <motion.p
       ref={ref}
       initial={{ opacity: 0, y: 15 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
       transition={{ duration: 0.6, delay, ease: 'easeOut' }}
       className={className}
     >
@@ -58,7 +61,6 @@ const AboutPage = () => {
 
   return (
     <section
-      id="about"
       ref={sectionRef}
       className="relative w-full bg-[#050505] overflow-hidden scroll-mt-20 border-t border-white/5"
     >
@@ -100,35 +102,36 @@ const AboutPage = () => {
 
             {/* Interactive Circular Image Frame */}
             <AnimatedSection direction="scale" className="relative w-64 h-64 sm:w-72 sm:h-72 group cursor-pointer">
-              {/* Outer Concentric Animated Ring */}
-              <div className="absolute -inset-2.5 rounded-full border border-[#22c55e]/25 scale-100 group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none" />
+              <CardTilt className="w-full h-full rounded-full" tiltScale={1.05}>
+                {/* Outer Concentric Animated Ring */}
+                <div className="absolute -inset-2.5 rounded-full border border-[#22c55e]/25 scale-100 group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none" />
 
-              {/* Core Image Circle Container */}
-              <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 bg-[#0b0b0b] z-10 flex items-center justify-center">
+                {/* Core Image Circle Container */}
+                <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 bg-[#0b0b0b] z-10 flex items-center justify-center">
 
-                {!imageError ? (
-                  <img
-                    src={pfp}
-                    alt="Rex Latayada"
-                    onError={() => setImageError(true)}
-                    className="w-full h-full object-cover group-hover:scale-[1.04] transition-all duration-500 ease-out">
-                      
-                    </img>
-                ) : (
-                  /* Fallback Initials */
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-[#0c0c0c] text-white/95 relative">
-                    <span className="font-sans font-black text-5xl tracking-tighter text-[#22c55e]/90">
-                      RL
-                    </span>
-                    <span className="mt-2 font-mono text-[9px] text-gray-500 uppercase tracking-widest">
-                      Developer Profile
-                    </span>
-                  </div>
-                )}
+                  {!imageError ? (
+                    <img
+                      src={pfp}
+                      alt="Rex Latayada"
+                      onError={() => setImageError(true)}
+                      className="w-full h-full object-cover group-hover:scale-[1.04] transition-all duration-500 ease-out"
+                    />
+                  ) : (
+                    /* Fallback Initials */
+                    <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-[#0c0c0c] text-white/95 relative">
+                      <span className="font-sans font-black text-5xl tracking-tighter text-[#22c55e]/90">
+                        RL
+                      </span>
+                      <span className="mt-2 font-mono text-[9px] text-gray-500 uppercase tracking-widest">
+                        Developer Profile
+                      </span>
+                    </div>
+                  )}
 
-                {/* Subtle Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20" />
-              </div>
+                  {/* Subtle Hover Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20" />
+                </div>
+              </CardTilt>
             </AnimatedSection>
 
             {/* Academic profile list */}
@@ -226,7 +229,9 @@ const AboutPage = () => {
 
                     {/* Node Dot */}
                     <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-1.5 md:top-auto md:flex items-center justify-center z-10">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border-2 border-white/20 group-hover:border-[#22c55e] transition-colors duration-300" />
+                      <Magnetic range={30} strength={0.45}>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#050505] border-2 border-white/20 group-hover:border-[#22c55e] transition-colors duration-300 cursor-pointer" />
+                      </Magnetic>
                     </div>
 
                     {/* Spacer */}

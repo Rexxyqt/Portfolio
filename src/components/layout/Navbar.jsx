@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import Magnetic from '../ui/Magnetic';
 
 const NAV_LINKS = [
   { id: 'about',   label: 'about'   },
@@ -47,18 +48,20 @@ const Navbar = ({ isScrolled }) => {
         aria-label="Main Navigation"
       >
         {/* Logo */}
-        <motion.a
-          href="#top"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative text-2xl font-black tracking-tighter text-white font-mono z-50 group"
-        >
-          rl
-          <span className="text-[#22c55e]">_</span>
-          {/* Glow on hover */}
-          <span className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_20px_rgba(34,197,94,0.4)]" />
-        </motion.a>
+        <Magnetic range={25} strength={0.35}>
+          <motion.a
+            href="#top"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative text-2xl font-black tracking-tighter text-white font-mono z-50 group"
+          >
+            rl
+            <span className="text-[#22c55e]">_</span>
+            {/* Glow on hover */}
+            <span className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_20px_rgba(34,197,94,0.4)]" />
+          </motion.a>
+        </Magnetic>
 
         {/* Desktop links */}
         <motion.ul
@@ -69,37 +72,41 @@ const Navbar = ({ isScrolled }) => {
         >
           {NAV_LINKS.map(item => (
             <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className={`relative px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 group ${
-                  active === item.id
-                    ? 'text-[#22c55e]'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                {/* Active background */}
-                {active === item.id && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 rounded-lg bg-[#22c55e]/10 border border-[#22c55e]/25"
-                    transition={{ type: 'spring', bounce: 0.25, duration: 0.5 }}
-                  />
-                )}
-                <span className="relative">{item.label}</span>
-              </a>
+              <Magnetic range={25} strength={0.3}>
+                <a
+                  href={`#${item.id}`}
+                  className={`relative px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 group ${
+                    active === item.id
+                      ? 'text-[#22c55e]'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  {/* Active background */}
+                  {active === item.id && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute inset-0 rounded-lg bg-[#22c55e]/10 border border-[#22c55e]/25"
+                      transition={{ type: 'spring', bounce: 0.25, duration: 0.5 }}
+                    />
+                  )}
+                  <span className="relative">{item.label}</span>
+                </a>
+              </Magnetic>
             </li>
           ))}
 
           {/* CTA button */}
           <li className="ml-4">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-lg border border-[#22c55e]/50 text-[#22c55e] text-sm font-mono hover:bg-[#22c55e]/10 hover:border-[#22c55e] transition-all duration-300"
-            >
-              resume.pdf
-            </a>
+            <Magnetic range={25} strength={0.3}>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 rounded-lg border border-[#22c55e]/50 text-[#22c55e] text-sm font-mono hover:bg-[#22c55e]/10 hover:border-[#22c55e] transition-all duration-300"
+              >
+                resume.pdf
+              </a>
+            </Magnetic>
           </li>
         </motion.ul>
 

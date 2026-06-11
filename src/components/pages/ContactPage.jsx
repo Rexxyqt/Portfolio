@@ -2,6 +2,8 @@ import { useState } from 'react';
 import AnimatedSection from '../ui/AnimatedSection';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheck, FiExternalLink } from 'react-icons/fi';
+import Magnetic from '../ui/Magnetic';
+import TextReveal from '../ui/TextReveal';
 
 const CONTACT_LINKS = [
   {
@@ -64,7 +66,6 @@ const ContactPage = () => {
 
   return (
     <section
-      id="contact"
       className="relative w-full py-24 bg-[#050505] overflow-hidden scroll-mt-16"
     >
       {/* Background glows */}
@@ -78,9 +79,10 @@ const ContactPage = () => {
         {/* Section header */}
         <AnimatedSection direction="left" className="mb-16">
           <p className="font-mono text-xs text-[#22c55e] tracking-[0.35em] uppercase mb-4">Contact</p>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Let's Build Together
-          </h2>
+          <TextReveal
+            text="Let's Build Together"
+            className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight"
+          />
           <p className="mt-5 text-gray-400 font-mono text-base max-w-2xl leading-relaxed">
             Got a project idea, internship opportunity, or just want to say hi?
             I'd love to hear from you.
@@ -170,15 +172,17 @@ const ContactPage = () => {
                       )}
                     </div>
 
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#22c55e] text-black rounded-xl font-bold text-sm hover:bg-[#16a34a] transition-colors duration-300 shadow-[0_0_24px_rgba(34,197,94,0.35)] hover:shadow-[0_0_36px_rgba(34,197,94,0.5)]"
-                    >
-                      <FiSend size={16} />
-                      Send Message
-                    </motion.button>
+                     <Magnetic className="w-full" range={35} strength={0.18}>
+                       <motion.button
+                         type="submit"
+                         whileHover={{ scale: 1.02 }}
+                         whileTap={{ scale: 0.98 }}
+                         className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#22c55e] text-black rounded-xl font-bold text-sm hover:bg-[#16a34a] transition-colors duration-300 shadow-[0_0_24px_rgba(34,197,94,0.35)] hover:shadow-[0_0_36px_rgba(34,197,94,0.5)] cursor-pointer"
+                       >
+                         <FiSend size={16} />
+                         Send Message
+                       </motion.button>
+                     </Magnetic>
                   </motion.form>
                 )}
               </AnimatePresence>

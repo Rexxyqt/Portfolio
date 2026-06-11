@@ -122,3 +122,49 @@ body {
   opacity: 0.04;
   mix-blend-mode: overlay;
 }
+
+/* ── Film Strip Sprocket Holes ── */
+.film-sprocket {
+  width: 18px;
+  height: 14px;
+  border-radius: 3px;
+  background: #050505;
+  border: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+
+/* ── Film strip horizontal drag track ── */
+.film-strip-track {
+  display: flex;
+  flex-direction: row;
+  will-change: transform;
+}
+.film-strip-track:active {
+  cursor: grabbing !important;
+}
+
+/* ── Hide scrollbar (keep scroll) ── */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Scanline effect overlay ── */
+@keyframes scanlines-move {
+  from { background-position: 0 0; }
+  to   { background-position: 0 100px; }
+}
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.12) 2px,
+    rgba(0,0,0,0.12) 4px
+  );
+  animation: scanlines-move 4s linear infinite;
+  pointer-events: none;
+}
